@@ -89,7 +89,45 @@ console.log(ticketPriceTotal);
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// How many runners are students? i.e. have a .edu email address
+let numOfStudents = (function() {
+    let pupils = runners.filter(runner => runner.email.indexOf('.edu') >= 0 );
+    return pupils.length;
+})();
+
+console.log('There are', numOfStudents, 'student runners');
 
 // Problem 2
+// What's the difference between the largest and smallest donations?
+function minMax(arr) {
+    let max = 0;
+    arr.forEach(item => {
+        if (item.donation > max) {
+            max = item.donation;
+        }
+    });
+
+    let min = max;
+    arr.forEach(item => {
+        if (item.donation < min) {
+            min = item.donation;
+        }
+    });
+
+    return max - min;
+}
+
+console.log('Difference between largest and smallest donation:', minMax(runners));
 
 // Problem 3
+// How many people wear a small?
+let smallShirt = runners.reduce((acc, runner) => {
+    if (runner.shirt_size === 'S') {
+        acc = acc + 1;
+    } 
+
+    return acc;
+}, 0);
+
+console.log(smallShirt + '', 'people wear a small shirt');
+
