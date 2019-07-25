@@ -25,31 +25,43 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 */
 
 
-function getLength(arr, cb) {
+(function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
-}
+  cb(arr.length);
+})(items, arrayLength => console.log(arrayLength));
 
-function last(arr, cb) {
+(function last(arr, cb) {
   // last passes the last item of the array into the callback.
-}
+  cb(arr[arr.length - 1]);
+})(items, lastItem => console.log(lastItem));
 
-function sumNums(x, y, cb) {
+(function sumNums(x, y, cb) {
   // sumNums adds two numbers (x, y) and passes the result to the callback.
-}
+  cb(x + y);
+})(2, 3, summedNums => console.log(summedNums));
 
-function multiplyNums(x, y, cb) {
+(function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
-}
+  cb(x * y);
+})(5, 3, multipliedNums => console.log(multipliedNums));
 
-function contains(item, list, cb) {
+(function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
-}
+  cb(list.includes(item));
+})('duck', ['cat', 'dog', 'duck'], isPresent => console.log(isPresent));
 
 /* STRETCH PROBLEM */
 
-function removeDuplicates(array, cb) {
+const animals = ['cat', 'dog', 'duck', 'cat', 'liazard', 'lion', 'duck', 'snake'];
+
+(function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
-}
+  const noDuplicatess = array.filter((item, index) => {
+    return array.indexOf(item) === index;
+  });
+
+  cb(noDuplicatess);
+})(animals, noDupAnimals => console.log(noDupAnimals));
